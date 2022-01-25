@@ -1,0 +1,35 @@
+---
+- name: "Adds Dropbox to repo"
+  shell:
+    cmd: |
+      echo "deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu bionic main" | sudo tee -a /etc/apt/sources.list.d/dropbox.list
+      sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+      sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    creates: /etc/apt/sources.list.d/dropbox.list
+  become: true
+
+- name: "Adds docker to repo"
+  shell:
+    cmd: |
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+      echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    creates: /etc/apt/sources.list.d/docker.list
+  become: true
+
+- name: Install dev-tools packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items: "{{ apt_packages }}"
+  become: true
+
+- name: Change docker persistent data location
+  template:
+    src: templates/graph.j2
+    dest: "/etc/docker/daemon.json"
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+  notify: Restart Docker

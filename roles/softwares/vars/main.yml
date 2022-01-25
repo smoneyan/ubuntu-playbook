@@ -1,0 +1,7 @@
+---
+apt_packages:
+  - wget
+  - curl
+  - ubuntu-restricted-extras
+  - apt-transport-https
+  - ca-certificates
