@@ -1,0 +1,10 @@
+---
+apt_packages:
+  - git
+  - dropbox
+  - gnupg
+  - docker-ce
+  - docker-ce-cli
+  - docker-compose
+
+docker_persistent_data_location: /data/teamie/docker-data
