@@ -26,3 +26,18 @@ ansible-galaxy install staticdev.brave
 ```
 ansible-playbook ubuntu-playbook.yml --ask-become-pass
 ```
+
+## After setup
+
+1. To restore the config stored in Dropbox. To do this after Dropbox folder gets synced locally.
+
+   ```
+   makup restore
+   ```
+
+   ![Backup](./images/backup.png)
+
+   This is how files will be stored in Dropbox
+   ![Backup](./images/dropbox-location.png)
+
+2.

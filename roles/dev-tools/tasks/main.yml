@@ -33,3 +33,9 @@
     mode: 0644
   become: true
   notify: Restart Docker
+
+#To backup all configuration files (dot files) .bashrc, .bash_aliases
+- name: Install Mackup
+  snap:
+    name: mackup
+    classic: yes
