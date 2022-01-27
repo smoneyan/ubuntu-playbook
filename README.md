@@ -38,6 +38,7 @@ ansible-playbook ubuntu-playbook.yml --ask-become-pass
    ![Backup](./images/backup.png)
 
    This is how files will be stored in Dropbox
-   ![Backup](./images/dropbox-location.png)
+
+   ![dropbox-location](./images/dropbox-location.png)
 
 2.
