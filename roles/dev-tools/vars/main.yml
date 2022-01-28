@@ -8,3 +8,8 @@ apt_packages:
   - docker-compose
 
 docker_persistent_data_location: /data/teamie/docker-data
+
+snap_packages:
+  - mackup
+  - postman
+  - authy

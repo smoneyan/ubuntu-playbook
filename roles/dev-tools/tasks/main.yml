@@ -35,7 +35,8 @@
   notify: Restart Docker
 
 #To backup all configuration files (dot files) .bashrc, .bash_aliases
-- name: Install Mackup
+- name: Install dev-tool snap packages
   snap:
-    name: mackup
-    classic: yes
+    name: "{{ item }}"
+  with_items: "{{ snap_packages }}"
+  become: true
